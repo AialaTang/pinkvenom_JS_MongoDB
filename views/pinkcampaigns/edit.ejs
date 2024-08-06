@@ -1,0 +1,55 @@
+<%layout('layouts/boilerplate')%>
+    <div class="row">
+    <h1 class="text-center">Edit The Pinkcamapign</h1>
+    <div class="col-6 offset-3">
+    <form action="/pinkcampaigns/<%=pinkcampaign._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="title">TITLE</label>
+            <input  class="form-control" type="text" id="title" name="pinkcampaign[title]" value="<%=pinkcampaign.title%>"  required>
+        <div class="valid-feedback">Looks Good! </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="city">CITY</label>
+            <input class="form-control" type="text" id="city" name="pinkcampaign[city]" value="<%=pinkcampaign.city%>" required>
+        <div class="valid-feedback">Looks Good! </div>
+        </div>
+         <div class="mb-3">
+            <label class="form-label" for="date">DATE</label>
+            <input class="form-control" type="datetime-local" id="date" name="pinkcampaign[date]" value="<%=pinkcampaign.date%>" required>
+        <div class="valid-feedback">Looks Good! </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-label" for="price">PRICE</div>
+        <div class="input-group ">   
+  <span class="input-group-text" id="price-label">$</span>
+  <input type="text" id="price" class="form-control" value="<%=pinkcampaign.price%>" name="pinkcampaign[price]" aria-label="price" aria-describedby="price-label" required>
+<div class="valid-feedback">Looks Good! </div>
+</div></div>
+  <div class="mb-3">
+            <label class="form-label" for="description">DESCRIPTION</label>
+            <textarea class="form-control" type="text" id="description" name="pinkcampaign[description]" required ><%=pinkcampaign.description  %></textarea>
+        <div class="valid-feedback">Looks Good! </div>
+        </div>
+         <div class="mb-3">
+               <label for="image" class="form-label">ADD IMAGES</label>
+           <p> <input type="file" name="image" id="image" multiple class="form-control"></p>
+        </div>
+      <div class=" mb-3">
+        <p><label for="deleteimage" class="form-label">DELETE IMAGES</label></p>
+         
+        <% pinkcampaign.images.forEach(function(img,i){ %>
+       
+            <img src="<%=img.thumbnail%>" class="img-thumbnail" alt="">
+            <div class="form-check-inline">
+                <input type="checkbox" id="img-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+            </div>
+            <label for="img-<%=i%>">delete</label>
+            <% })  %>
+      </div>
+        <div class="mb-3">
+        <button class="btn btn-info">Update Pinkcampaign</button></div>
+    </form>
+    <div class="mb-3">
+    <a href="/pinkcampaigns/<%=pinkcampaign._id%>">Back to Pinkcampaign</a>
+   </div> </div>
+</div>
